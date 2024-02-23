@@ -49,15 +49,6 @@ enum Term {
 TSPL::new_parser!(TermParser);
 ```
 
-This just creates the following struct for you:
-
-```rust
-struct TermParser<'i> {
-  input: &'i str,
-  index: usize,
-}
-```
-
 4. Create an `impl Parser` for `TermParser`, with your grammar:
 
 ```rust
