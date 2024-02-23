@@ -39,7 +39,7 @@ enum Term {
 ```
 <term> ::= <lam> | <app> | <var>
 <lam>  ::= "λ" <name> " " <term>
-<app>  ::= "(" <func> " " <argm> ")"
+<app>  ::= "(" <term> " " <term> ")"
 <var>  ::= alphanumeric_string
 ```
 
