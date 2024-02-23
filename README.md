@@ -68,14 +68,12 @@ impl<'i> Parser<'i> for TermParser<'i> {
       Some('λ') => {
         self.advance_one();
         let name = self.parse_name()?;
-        self.skip_trivia();
         let body = Box::new(self.parse()?);
         Ok(Term::Lam { name, body })
       }
       Some('(') => {
         self.consume("(")?;
         let func = Box::new(self.parse()?);
-        self.skip_trivia();
         let argm = Box::new(self.parse()?);
         self.consume(")")?;
         Ok(Term::App { func, argm })
