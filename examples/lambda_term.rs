@@ -14,7 +14,7 @@ impl<'i> TermParser<'i> {
     self.skip_trivia();
     match self.peek_one() {
       Some('λ') => {
-        self.advance_one();
+        self.consume("λ")?;
         let name = self.parse_name()?;
         let body = Box::new(self.parse()?);
         Ok(Term::Lam { name, body })
