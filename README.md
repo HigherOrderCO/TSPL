@@ -100,4 +100,4 @@ cargo run --example lambda_term
 
 This design is based on T6's new parser for
 [HVM-Core](https://github.com/HigherOrderCO/HVM-Core), and is much cleaner than
-the old [HOPA](https://github.com/HigherOrderCO/HOPA) approach.
+the old [HOPA](https://github.com/HigherOrderCO/HOP) approach.
