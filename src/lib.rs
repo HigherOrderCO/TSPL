@@ -159,7 +159,6 @@ pub trait Parser<'i> {
 
   /// Parses a single unicode character, supporting scape sequences.
   fn parse_char(&mut self) -> Result<char, String> {
-    self.skip_trivia();
     match self.advance_one() {
       Some('\\') => match self.advance_one() {
         Some('u') => {
