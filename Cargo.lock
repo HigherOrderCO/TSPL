@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "TSPL"
-version = "0.0.2"
+version = "0.0.4"
 dependencies = [
  "highlight_error",
 ]
