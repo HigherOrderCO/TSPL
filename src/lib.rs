@@ -99,6 +99,11 @@ pub trait Parser<'i> {
     }
   }
 
+  /// Checks if the parser has reached the end of the input.
+  fn is_eof(&self) -> bool {
+    *self.index() >= self.input().len()
+  }
+
   /// Consumes an instance of the given string, erroring if it is not found.
   fn consume(&mut self, text: &str) -> Result<(), String> {
     self.skip_trivia();
@@ -174,7 +179,6 @@ pub trait Parser<'i> {
         Some(chr) => self.expected(&format!("\\{}", chr)),
         None => self.expected("escaped-char"),
       },
-      Some('\'') => self.expected("non-single-quote-char"),
       Some(other) => Ok(other),
       None => self.expected("char"),
     }
