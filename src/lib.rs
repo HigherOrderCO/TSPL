@@ -100,7 +100,7 @@ pub trait Parser<'i> {
   }
 
   /// Checks if the parser has reached the end of the input.
-  fn is_eof(&self) -> bool {
+  fn is_eof(&mut self) -> bool {
     *self.index() >= self.input().len()
   }
 
