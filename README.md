@@ -49,10 +49,10 @@ enum Term {
 TSPL::new_parser!(TermParser);
 ```
 
-4. Create an `impl Parser` for `TermParser`, with your grammar:
+4. Create an `impl TermParser`, with your grammar:
 
 ```rust
-impl<'i> Parser<'i> for TermParser<'i> {
+impl<'i> TermParser<'i> {
   fn parse(&mut self) -> Result<Term, String> {
     self.skip_trivia();
     match self.peek_one() {
