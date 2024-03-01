@@ -9,17 +9,17 @@ macro_rules! new_parser {
     }
 
     impl<'i> Parser<'i> for $Parser<'i> {
-      pub fn input(&mut self) -> &'i str {
+      fn input(&mut self) -> &'i str {
         &self.input
       }
 
-      pub fn index(&mut self) -> &mut usize {
+      fn index(&mut self) -> &mut usize {
         &mut self.index
       }
     }
 
     impl<'i> $Parser<'i> {
-      pub fn new(input: &'i str) -> Self {
+      fn new(input: &'i str) -> Self {
         Self { input, index: 0 }
       }
     }
