@@ -3,23 +3,23 @@ use highlight_error::{*};
 #[macro_export]
 macro_rules! new_parser {
   ($Parser:ident) => {
-    struct $Parser<'i> {
+    pub struct $Parser<'i> {
       input: &'i str,
       index: usize,
     }
 
     impl<'i> Parser<'i> for $Parser<'i> {
-      fn input(&mut self) -> &'i str {
+      pub fn input(&mut self) -> &'i str {
         &self.input
       }
 
-      fn index(&mut self) -> &mut usize {
+      pub fn index(&mut self) -> &mut usize {
         &mut self.index
       }
     }
 
     impl<'i> $Parser<'i> {
-      fn new(input: &'i str) -> Self {
+      pub fn new(input: &'i str) -> Self {
         Self { input, index: 0 }
       }
     }
