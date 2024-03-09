@@ -117,7 +117,7 @@ pub trait Parser<'i> {
 
   /// Checks if the next characters in the input start with the given string.
   fn starts_with(&mut self, text: &str) -> bool {
-    self.peek_many(text.len()).map_or(false, |s| s == text)
+    self.peek_many(text.chars().count()).map_or(false, |s| s == text)
   }
 
   /// Consumes all contiguous characters matching a given predicate.
