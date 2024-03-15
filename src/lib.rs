@@ -137,7 +137,7 @@ pub trait Parser<'i> {
   /// Parses a name from the input, supporting alphanumeric characters, underscores, periods, and hyphens.
   fn parse_name(&mut self) -> Result<String, String> {
     self.skip_trivia();
-    let name = self.take_while(|c| c.is_ascii_alphanumeric() || c == '_' || c == '.' || c == '-');
+    let name = self.take_while(|c| c.is_ascii_alphanumeric() || c == '_' || c == '.' || c == '-' || c == '/');
     if name.is_empty() {
       self.expected("name")
     } else {
