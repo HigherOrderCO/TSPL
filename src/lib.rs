@@ -19,7 +19,7 @@ macro_rules! new_parser {
     }
 
     impl<'i> $Parser<'i> {
-      fn new(input: &'i str) -> Self {
+     pub fn new(input: &'i str) -> Self {
         Self { input, index: 0 }
       }
     }
