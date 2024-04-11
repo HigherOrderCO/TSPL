@@ -178,6 +178,7 @@ pub trait Parser<'i> {
             .ok().and_then(std::char::from_u32)
             .ok_or_else(|| self.expected::<char>("unicode-codepoint").unwrap_err())
         }
+        Some('0') => Ok('\0'),
         Some('n') => Ok('\n'),
         Some('r') => Ok('\r'),
         Some('t') => Ok('\t'),
