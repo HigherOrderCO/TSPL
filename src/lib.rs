@@ -89,8 +89,12 @@ pub trait Parser<'i> {
         continue;
       }
       if c == '/' && self.input().get(*self.index()..).unwrap_or_default().starts_with("//") {
-        while self.peek_one() != Some('\n') {
-          self.advance_one();
+        while let Some(c) = self.peek_one() {
+          if c != '\n' {
+            self.advance_one();
+          } else {
+            break;
+          }
         }
         self.advance_one(); // Skip the newline character as well
         continue;
