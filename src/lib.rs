@@ -158,7 +158,7 @@ pub trait Parser<'i> {
       _ => { 10 },
     };
     let num_str = self.take_while(move |c| c.is_digit(radix) || c == '_');
-    let num_str = num_str;
+    let num_str = num_str.chars().filter(|c| *c != '_').collect::<String>();
     if num_str.is_empty() {
       self.expected("numeric digit")
     } else {
