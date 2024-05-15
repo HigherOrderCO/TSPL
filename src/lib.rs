@@ -89,8 +89,12 @@ pub trait Parser<'i> {
         continue;
       }
       if c == '/' && self.input().get(*self.index()..).unwrap_or_default().starts_with("//") {
-        while self.peek_one() != Some('\n') {
-          self.advance_one();
+        while let Some(c) = self.peek_one() {
+          if c != '\n' {
+            self.advance_one();
+          } else {
+            break;
+          }
         }
         self.advance_one(); // Skip the newline character as well
         continue;
@@ -154,7 +158,7 @@ pub trait Parser<'i> {
       _ => { 10 },
     };
     let num_str = self.take_while(move |c| c.is_digit(radix) || c == '_');
-    let num_str = num_str;
+    let num_str = num_str.chars().filter(|c| *c != '_').collect::<String>();
     if num_str.is_empty() {
       self.expected("numeric digit")
     } else {
@@ -174,6 +178,7 @@ pub trait Parser<'i> {
             .ok().and_then(std::char::from_u32)
             .ok_or_else(|| self.expected::<char>("unicode-codepoint").unwrap_err())
         }
+        Some('0') => Ok('\0'),
         Some('n') => Ok('\n'),
         Some('r') => Ok('\r'),
         Some('t') => Ok('\t'),
