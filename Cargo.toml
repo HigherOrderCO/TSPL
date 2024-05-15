@@ -1,6 +1,6 @@
 [package]
 name = "TSPL"
-version = "0.0.11"
+version = "0.0.12"
 authors = ["Victor Taelin <victor.taelin@gmail.com>"]
 edition = "2021"
 description = "The Simplest Parser Library"
