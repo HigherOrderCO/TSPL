@@ -1,3 +1,9 @@
+#![no_std]
+
+extern crate alloc;
+
+use alloc::{format, string::{String, ToString}};
+
 use highlight_error::{*};
 
 #[macro_export]
@@ -145,7 +151,7 @@ pub trait Parser<'i> {
     if name.is_empty() {
       self.expected("name")
     } else {
-      Ok(name.to_owned())
+      Ok(name.to_string())
     }
   }
 
@@ -175,7 +181,7 @@ pub trait Parser<'i> {
           let codepoint_str = self.take_while(|c| c.is_digit(16));
           self.consume("}")?;
           u32::from_str_radix(codepoint_str, 16)
-            .ok().and_then(std::char::from_u32)
+            .ok().and_then(core::char::from_u32)
             .ok_or_else(|| self.expected::<char>("unicode-codepoint").unwrap_err())
         }
         Some('0') => Ok('\0'),
