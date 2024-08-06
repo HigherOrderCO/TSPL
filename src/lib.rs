@@ -235,7 +235,7 @@ pub trait Parser<'i> {
   }
 
   /// Parses a quoted character, like 'x'.
-  fn parse_quoted_char(&mut self) -> Result<char, String> {
+  fn parse_quoted_char(&mut self) -> Result<char, ParseError> {
     self.skip_trivia();
     self.consume("'")?;
     let chr = self.parse_char()?;
