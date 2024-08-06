@@ -50,6 +50,12 @@ impl<'a> From<ParseError> for String {
   }
 }
 
+impl<'a> std::fmt::Display for ParseError {
+  fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    self.message.fmt(f)
+  }
+}
+
 pub trait Parser<'i> {
 
   fn input(&mut self) -> &'i str;
