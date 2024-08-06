@@ -75,7 +75,7 @@ pub trait Parser<'i> {
   fn expected_and<T>(&mut self, exp: &str, msg: &str) -> Result<T, ParseError> {
     let span = (*self.index(), *self.index() + 1);
     let ctx = highlight_error(span.0, span.1, self.input());
-    let msg = format!("\x1b[1mPARSE_ERROR\n- expected: \x1b[0m{}\x1b[1m\n- detected:\n\x1b[0m{}\x1b[1m\n - info:\n\x1b[0m{}", exp, ctx, msg);
+    let msg = format!("\x1b[1mPARSE_ERROR\n- information: \x1b[0m{}\x1b[1m\n- expected: \x1b[0m{}\x1b[1m\n- detected:\n\x1b[0m{}\x1b[1m\n ", msg, exp, ctx);
     Err(ParseError::new(span, msg))
   }
 
